@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CI/CD Pipeline Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>🚀 CI/CD Pipeline Demo</h1>
+        <p>This page demonstrates an automated workflow using:</p>
+
+        <div class="pipeline">
+            <div class="step github">GitHub<br>Push → Repo</div>
+            <div class="arrow">➡️</div>
+            <div class="step actions">GitHub Actions<br>Build & Test</div>
+            <div class="arrow">➡️</div>
+            <div class="step render">Render.com<br>Auto Deploy</div>
+        </div>
+
+        <button id="checkStatus">Check Server Status</button>
+
+        <p id="output"></p>
+    </div>
+
+    <script>
+        document.getElementById("checkStatus").addEventListener("click", async () => {
+            const res = await fetch("/api/status");
+            const data = await res.json();
+            document.getElementById("output").textContent =
+                "Server Response: " + JSON.stringify(data, null, 2);
+        });
+    </script>
+</body>
+</html>
